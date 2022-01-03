@@ -6,26 +6,28 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="stylesheet" href="style.css">
     <title>Archivtter (アーカイブッター) - Twitterで日付検索が出来るツール</title>
 
+    <!-- Bootstrap 5.0.2-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:site" content="@CoreiNion">
-    <meta name="twitter:creator" content="@CoreiNion">
+    <meta name="twitter:site" content="@CirlMoon">
+    <meta name="twitter:creator" content="@CirlMoon">
     <meta name="og:title" content="Archivtter">
-    <meta name="og:description"
-        content="このウェブサイトでは、ツイッターでの過去のツイートを検索できます！">
+    <meta name="og:description" content="このウェブサイトでは、ツイッターでの過去のツイートを検索できます！">
     <meta name="og:image" content="https://corenion.github.io/Archivtter/ogpImage.jpg">
 
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146788665-2"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'UA-146788665-2');
+        gtag('config', 'UA-146788665-2');
     </script>
 
     <!-- Source Button (using https://buttons.github.io/)-->
@@ -33,50 +35,112 @@
 </head>
 
 <body>
-    <h1>Archivtter (アーカイブッター)</h1>
-    <p>過去のツイートを検索できます！</p>
-    <p>ユーザー名、検索したい日付の範囲を選択してください。</p>
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand">CNion's Site</a>
 
-    <!--ユーザー名の行-->
-    <p>
-        <!--アットマークを強調-->
-        <span id="at">@</span>
-        <input id="userName" type="text" placeholder="ユーザー名">
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../">Profile</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="">Archivtter</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://github.com/CoreNion/Archivtter">Source</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="text-center">Archivtter (アーカイブッター)</h1>
+
+    <p class="text-center">
+        <span>過去のツイートを簡単に検索できるリンクを発行します！</span>
     </p>
 
-    <!--日付選択-->
-    <p>
-        <span>検索を開始する日付:</span>
-        <input id="sinceDate" type="date">
-    </p>
-    <p>
-        <span>検索を終了する日付:</span>
-        <input id="untilDate" type="date">
-    </p>
-    <button id="submitButton">検索用のリンクを作成！</button>
-    <p>
-        <!--作成結果を表示-->
+    <div class="d-flex justify-content-center flex-wrap">
+        <div class="card bg-dark m-2 flex-grow-1">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <span>Step 1: ユーザー名を入力</span>
+                </h5>
+
+                <p class="card-text">@から始まるユーザー名を入力してください。</p>
+                <div class="float-end input-group">
+                    <span class="input-group-text">@</span>
+                    <input class="form-control bg-transparent text-white" id="userName" type="text" placeholder="ユーザー名">
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-dark m-2 flex-grow-1">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <span>Step 2: 検索する期間の開始日を設定</span>
+                </h5>
+
+                <p class="card-text">検索する日付の範囲の、開始日を入力してください。</p>
+                <div class="float-end input-group">
+                    <input class="form-control bg-transparent text-white" id="sinceDate" type="date">
+                </div>
+            </div>
+        </div>
+
+        <div class="card bg-dark m-2 flex-grow-1">
+            <div class="card-body">
+                <h5 class="card-title">
+                    <span>Step 3: 検索する期間の終了日を設定</span>
+                </h5>
+
+                <p class="card-text">検索する日付の範囲の、終了日を入力してください。</p>
+                <div class="float-end input-group">
+                    <input class="form-control bg-transparent text-white" id="untilDate" type="date">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-center">
+        <button type="button" class="btn btn-primary btn-lg" id="submitButton">検索用のリンクを作成！</button>
+    </div>
+
+    <!--作成結果を表示-->
+    <div class="m-2">
         <div id="resultArea"></div>
-    </p>
-    <div id="tweetArea"></div>
-    <p>
-        <span>※見つからない場合の主な原因</span>
-        <ul>
-            <li>入力が間違っている。(ユーザー名はTwitterで@から始まる名前のことです。)</li>
-            <li>検索期間中にツイートしていない。</li>
-            <li>検索期間中のツイートをすべて削除した。</li>
-            <li>そもそも検索期間中にツイッターアカウントが存在していない。</li>
-        </ul>
-    </p>
+        <div id="tweetArea"></div>
+    </div>
+    
+    <br>
 
-    <br>
-    <span>Made by </span><a href="https://twitter.com/CoreiNion" style="color: antiquewhite;">@CoreiNion</a>
-    <br>
-    <a href="https://corenion.github.io/index.html" style="color:moccasin">CoreNion&#39;s Page</a>
+    <div class="m-1">
+        <b>見つからない場合のトラブルシューティング</b>    
+        <ul>
+            <li>入力が間違っていませんか？</li>
+            <li>そもそも検索期間中にツイッターアカウントは存在していますか？</li>
+            <li>期間中にツイートしていない可能性があります。</li>
+            <li>期間中のツイートをすべて削除していて、見つからない可能性があります。</li>
+        </ul>
+    </div>
+
+    <p class="ms-2 text-center">
+        <a class="text-warning m-2" href="https://corenion.github.io/index.html">Cirl (CoreNion)&#39;s Page</a>
+        <br>
+        <span>© 2020-2022 CoreNion</span>
+    </p>
 
     <script src="generateLink.js"></script>
-    <br><br>
-    <a class="github-button" href="https://github.com/CoreNion/Archivtter" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" aria-label="Star CoreNion/Archivtter on GitHub">Source</a>
+    <!-- Bootstrap bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
