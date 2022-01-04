@@ -11,7 +11,7 @@ submitButton.onclick = () => {
   if (!isInputError(userName, sinceDate, untilDate)) {
     var link = generateLink(userName, sinceDate, untilDate);
     //リンク作成でエラーが発生してない場合のみ実行
-    if (!(link == 1)) {
+    if (isNaN(link)) {
       //resultAreaとtweetAreaに要素が残ってたらすべて削除
       removeAllChildren(tweetAreaDivided);
       removeAllChildren(resultAreaDivided);
@@ -26,14 +26,18 @@ submitButton.onclick = () => {
       resultAreaDivided.appendChild(completeText);
       resultAreaDivided.appendChild(resultText);
 
-      //ツイートボタン
+      /* ツイートボタン */
       const twScript = document.createElement('script');
       twScript.setAttribute('src', 'https://platform.twitter.com/widgets.js');
       tweetAreaDivided.appendChild(twScript);
       const tweetButton = document.createElement("a");
-      var tweetText = "@" + userName + "の" + sinceDate + "～" + untilDate + "までのツイートです！\n" +
-        "https://twitter.com/search?q=from%3A" + userName + "%20since%3A" + sinceDate + "%20until%3A" + untilDate + "\n\n" +
+
+      //Date型を"yyyy年mm月dd日"に変更する
+      const dateOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+      var tweetText = "@" + userName + "の" + sinceDate.toLocaleDateString(undefined,dateOptions) + "～" + untilDate.toLocaleDateString(undefined,dateOptions) + "までのツイートです！\n" +
+        link + "\n\n" +
         "作成サイト:";
+      //ツイートボタンの各オプションを設定
       tweetButton.setAttribute("href", "https://twitter.com/share?ref_src=twsrc%5Etfw");
       tweetButton.className = "twitter-share-button";
       tweetButton.setAttribute("data-size", "large");
@@ -43,6 +47,12 @@ submitButton.onclick = () => {
       tweetButton.setAttribute("data-show-count", "false");
       tweetButton.innerText = "ツイートする";
       tweetAreaDivided.appendChild(tweetButton);
+    } else {
+      if(link == 1) {
+        alert("検索期間の開始日が終了日の後の日付になっています。\n正しい日付を入力してください。");
+      } else {
+        alert("エラーが発生しました。正しい値が入力されているかどうかを確認してください。")
+      }
     }
   }
 };
@@ -53,8 +63,8 @@ function getInputValue() {
   const untilDateInput = document.getElementById("untilDate");
   const userNameInput = document.getElementById("userName");
   const userName = userNameInput.value;
-  const sinceDate = sinceDateInput.value;
-  const untilDate = untilDateInput.value;
+  const sinceDate = new Date(sinceDateInput.value);
+  const untilDate = new Date(untilDateInput.value);
   return [userName, sinceDate, untilDate];
 }
 
