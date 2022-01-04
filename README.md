@@ -1,6 +1,6 @@
 # Archivtter
 
-![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/CoreNion/Archivtter) [![GitHub issues](https://img.shields.io/github/issues/CoreNion/Archivtter)](https://github.com/CoreNion/Archivtter/issues)
+![GitHub last commit](https://img.shields.io/github/last-commit/CoreNion/Archivtter)
 
 
 このサイトでは、Twitterの検索コマンドを用いて、過去のツイートを検索できるURLを発行できます。
@@ -19,10 +19,10 @@ Twitterの検索では、コマンドを使って検索できます。
 
 このツールでは、sinceとuntilというコマンドを利用して、過去のツイートを検索できるようにしています。
 
-このsinceとuntilは、sinceには検索範囲の起点の日付を、untilには検索範囲の終点の日付を以下のような形で利用します。
+このsinceとuntilは、sinceには検索期間の開始日の日付を、untilには検索期間の終了日の日付を以下のような形で利用します。
 
 ```TwitterSearch
-XXXX(検索ワード等)　since:YYYY-MM-DD until:YYYY:MM-DD
+XXXX(検索ワード等) since:YYYY-MM-DD until:YYYY:MM-DD
 ```
 
 これで検索ができますが、手入力がやや面倒なため、ツールを作成しました。
@@ -39,10 +39,4 @@ generateLinkの引数には、アカウント名と検索開始する日付、�
 
 Github Pagesにアップロードしているのはgh-pagesというブランチの方です。
 
-gh-pagesとmasterの違いは、SNS用の画像のタグなどを付けているかなどの違いだけで、JavaScriptやCSSの部分には違いは全くありません。
-
-# 開発者について
-
-**CoreNion** 中学校三年生の人です。
-
-![Twitter Follow](https://img.shields.io/twitter/follow/CoreiNion?style=social) ![GitHub followers](https://img.shields.io/github/followers/CoreNion?style=social)
+gh-pagesとmasterの違いは、SNS用の画像のタグなどを付けているかなどの違いだけで、コアの機能には違いはありません。
