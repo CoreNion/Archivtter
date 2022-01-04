@@ -66,7 +66,7 @@
         <span>過去のツイートを簡単に検索できるリンクを発行します！</span>
     </p>
 
-    <div class="d-flex justify-content-center flex-wrap">
+    <div class="d-flex justify-content-center flex-wrap" id="inputGroup">
         <div class="card bg-dark m-2 flex-grow-1">
             <div class="card-body">
                 <h5 class="card-title">
@@ -76,7 +76,8 @@
                 <p class="card-text">@から始まるユーザー名を入力してください。</p>
                 <div class="float-end input-group">
                     <span class="input-group-text">@</span>
-                    <input class="form-control bg-transparent text-white" id="userName" type="text" placeholder="ユーザー名">
+                    <input class="form-control bg-transparent text-white" id="userName" type="text" placeholder="ユーザー名" required>
+                    <div class="invalid-feedback" id="userNameFeedback">ユーザー名を入力してください。</div>
                 </div>
             </div>
         </div>
@@ -89,7 +90,8 @@
 
                 <p class="card-text">検索する日付の範囲の、開始日を入力してください。</p>
                 <div class="float-end input-group">
-                    <input class="form-control bg-transparent text-white" id="sinceDate" type="date">
+                    <input class="form-control bg-transparent text-white" id="sinceDate" type="date" required>
+                    <div class="invalid-feedback" id="sinceDateFeedback">開始日を入力してください。</div>
                 </div>
             </div>
         </div>
@@ -102,7 +104,8 @@
 
                 <p class="card-text">検索する日付の範囲の、終了日を入力してください。</p>
                 <div class="float-end input-group">
-                    <input class="form-control bg-transparent text-white" id="untilDate" type="date">
+                    <input class="form-control bg-transparent text-white" id="untilDate" type="date" required>
+                    <div class="invalid-feedback" id="untilDateFeedback">終了日を入力してください。</div>
                 </div>
             </div>
         </div>
