@@ -17,8 +17,8 @@ submitButton.onclick = () => {
     if (isNaN(link)) {
       //resultAreaに結果のメッセージとURLを表示
       const resultText = document.createElement("a");
-      const completeText = document.createElement("h4");
-      completeText.innerText = "リンクを作成しました！下のリンクをクリックすれば検索画面を開けます。";
+      const completeText = document.createElement("b");
+      completeText.innerText = "リンクを作成しました！";
       resultText.href = link;
       //リンクの文字を赤にし、display:blockでaタグにmarginを適用する
       resultText.style.cssText = "color: red; display:block;";
